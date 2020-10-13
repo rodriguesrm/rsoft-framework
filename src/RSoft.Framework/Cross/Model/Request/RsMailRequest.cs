@@ -32,27 +32,27 @@ namespace RSoft.Framework.Cross.Model.Request
         /// <summary>
         /// List of email recipients
         /// </summary>
-        public List<EmailAddressRequest> To { get; set; }
+        public List<EmailAddressRequest> To { get; set; } = new List<EmailAddressRequest>();
 
         /// <summary>
         /// Copy recipient list
         /// </summary>
-        public List<EmailAddressRequest> Cc { get; set; }
+        public List<EmailAddressRequest> Cc { get; set; } = new List<EmailAddressRequest>();
 
         /// <summary>
         /// Blind copy recipient list
         /// </summary>
-        public List<EmailAddressRequest> Bcc { get; set; }
+        public List<EmailAddressRequest> Bcc { get; set; } = new List<EmailAddressRequest>();
 
         /// <summary>
         /// List of files to be sent as an attachment
         /// </summary>
-        public List<FileAttachmentRequest> Files { get; set; }
+        public List<FileAttachmentRequest> Files { get; set; } = new List<FileAttachmentRequest>();
 
         /// <summary>
         /// Indicates whether the content will be sent in HTML format or in plain text
         /// </summary>
-        public bool EnableHtml { get; set; }
+        public bool EnableHtml { get; set; } = true;
 
     }
 }
