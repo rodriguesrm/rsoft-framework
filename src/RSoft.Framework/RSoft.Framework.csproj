@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>1.0.0-rc1.4</Version>
+    <Version>1.0.0-rc1.5</Version>
     <Company>RSoft</Company>
     <Authors>Rodrigo Rodrigues</Authors>
     <Description>Standard development framework adopted by RSoft (DDD)</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/rodriguesrm/rsoft-framework</RepositoryUrl>
-    <PackageTags>rsoft framwork ddd domain drive design</PackageTags>
+    <PackageTags>rsoft framework ddd domain drive design</PackageTags>
     <PackageIcon>rsoft-framework-icon-32x32.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
@@ -48,7 +48,7 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.8.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.3" />
     <PackageReference Include="RSoft.Helpers" Version="1.3.1" />
-    <PackageReference Include="RSoft.Logs" Version="1.0.0-rc1.6" />
+    <PackageReference Include="RSoft.Logs" Version="1.0.0-rc1.7" />
   </ItemGroup>
 
   <ItemGroup>

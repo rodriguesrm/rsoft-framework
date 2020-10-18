@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Docs", "0-Docs", "{B20F9E66-18FF-495E-AFE3-D9A9C25FE0F6}"
 	ProjectSection(SolutionItems) = preProject
 		..\docs\license.txt = ..\docs\license.txt
+		..\docs\release-notes.md = ..\docs\release-notes.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Framework", "1-Framework", "{0FAEEA28-9834-4CB9-AAC6-3646D4A8A9E2}"
