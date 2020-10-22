@@ -52,11 +52,14 @@ namespace RSoft.Framework.Web.Extensions
         /// Configure language service
         /// </summary>
         /// <param name="app">IApplicationBuilder object instance</param>
-        public static void ConfigureLangague(IApplicationBuilder app)
+        public static IApplicationBuilder ConfigureLangague(this IApplicationBuilder app)
         {
+
             ServiceActivator.Configure(app.ApplicationServices);
             IOptions<RequestLocalizationOptions> localizeOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(localizeOptions.Value);
+
+            return app;
         }
 
     }

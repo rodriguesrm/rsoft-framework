@@ -6,3 +6,6 @@ Package that brings together the abstractions and common codes for the applicati
 
 ### Release Notes version 1.0.0-rc1.6
 - Create extensions to Services Language/Culture/StringLocalizer
+
+### Release Notes version 1.0.0-rc1.7
+- Fix configure method to configure Services Language/Culture/StringLocalizer
