@@ -1,4 +1,5 @@
-﻿using RSoft.Framework.Cross.Entities;
+﻿using RSoft.Framework.Cross.Abstractions;
+using RSoft.Framework.Cross.Entities;
 
 namespace RSoft.Framework.Domain.Contracts
 {
@@ -25,34 +26,32 @@ namespace RSoft.Framework.Domain.Contracts
         public AddressValidationContract(IAddress address)
         {
 
-            //BACKLOG: Globalization
-            //(names and messages)
             Contract
                 .Requires()
 
-                .IsNotNullOrEmpty(address.StreetName, "StreetName", "Street name is required")
-                .HasMinLen(address.StreetName ?? string.Empty, 2, "StreetName", "Street name must contain at least 2 characters")
-                .HasMaxLen(address.StreetName ?? string.Empty, 80, "StreetName", "Street name must contain a maximum of 80 characters")
+                .IsNotNullOrEmpty(address.StreetName, "StreetName", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("STREET_NAME_REQUIRED", "Street name is required"))
+                .HasMinLen(address.StreetName ?? string.Empty, 2, "StreetName", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("STREET_NAME_MIN_SIZE", "Street name must contain at least 2 characters"))
+                .HasMaxLen(address.StreetName ?? string.Empty, 80, "StreetName", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("STREET_NAME_MAX_SIZE", "Street name must contain a maximum of 80 characters"))
 
-                .IsNotNullOrEmpty(address.AddressNumber, "AddressNumber", "Address number is required")
-                .HasMaxLen(address.StreetName ?? string.Empty, 20, "AddressNumber", "Address number must contain a maximum of 20 characters")
+                .IsNotNullOrEmpty(address.AddressNumber, "AddressNumber", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("ADDRESS_NUMBER_REQUIRED", "Address number is required"))
+                .HasMaxLen(address.StreetName ?? string.Empty, 20, "AddressNumber", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("ADDRESS_NUMBER_MAX_SIZE", "Address number must contain a maximum of 20 characters"))
 
-                .HasMaxLen(address.SecondaryAddress ?? string.Empty, 40, "SecondaryAddress", "Secondary address must contain a maximum of 40 characters")
+                .HasMaxLen(address.SecondaryAddress ?? string.Empty, 40, "SecondaryAddress", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("SECONDARY_ADDRESS_MAX_SIZE", "Secondary address must contain a maximum of 40 characters"))
 
-                .IsNotNullOrEmpty(address.District, "District", "District/Neighborhood is required")
-                .HasMinLen(address.District ?? string.Empty, 2, "District", "District/Neighborhood must contain at least 2 characters")
-                .HasMaxLen(address.District ?? string.Empty, 50, "District", "District/Neighborhood must contain a maximum of 50 characters")
+                .IsNotNullOrEmpty(address.District, "District", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("NEIGHBORHOOD_REQUIRED", "District/Neighborhood is required"))
+                .HasMinLen(address.District ?? string.Empty, 2, "District", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("NEIGHBORHOOD_MIN_SIZE", "District/Neighborhood must contain at least 2 characters"))
+                .HasMaxLen(address.District ?? string.Empty, 50, "District", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("NEIGHBORHOOD_MAX_SIZE", "District/Neighborhood must contain a maximum of 50 characters"))
 
-                .IsNotNullOrEmpty(address.City, "City", "City is required")
-                .HasMinLen(address.City ?? string.Empty, 2, "City", "City must contain at least 2 characters")
-                .HasMaxLen(address.City ?? string.Empty, 80, "City", "City must contain a maximum of 80 characters")
+                .IsNotNullOrEmpty(address.City, "City", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("CITY_REQUIRED", "City is required"))
+                .HasMinLen(address.City ?? string.Empty, 2, "City", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("CITY_MIN_SIZE", "City must contain at least 2 characters"))
+                .HasMaxLen(address.City ?? string.Empty, 80, "City", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("CITY_MAX_SIZE", "City must contain a maximum of 80 characters"))
 
-                .IsNotNullOrEmpty(address.State, "State", "State is required")
-                .HasLen(address.State ?? string.Empty, 2, "State", "State must contain exactly 2 positions")
+                .IsNotNullOrEmpty(address.State, "State", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("STATE_REQUIRED", "State is required"))
+                .HasLen(address.State ?? string.Empty, 2, "State", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("STATE_SIZE", "State must contain exactly 2 positions"))
 
-                .IsNotNullOrEmpty(address.ZipCode, "ZipCode", "Zip code is required")
-                .HasLen(address.ZipCode, 8, "ZipCode", "The zip code must contain exactly 8 positions")
-                .Matchs(address.ZipCode, "[0-9]{8}", "ZipCode", "Zip code is in an invalid format (enter numbers only)")
+                .IsNotNullOrEmpty(address.ZipCode, "ZipCode", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("ZIP_CODE_REQUIRED", "Zip code is required"))
+                .HasLen(address.ZipCode, 8, "ZipCode", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("ZIP_COD_SIZE", "The zip code must contain exactly 8 positions"))
+                .Matchs(address.ZipCode, "[0-9]{8}", "ZipCode", ServiceActivator.GetStringInLocalizer<AddressValidationContract>("ZIP_CODE_ONLY_NUMBERS", "Zip code is in an invalid format (enter numbers only)"))
             ;
 
         }

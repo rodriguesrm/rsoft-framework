@@ -36,7 +36,6 @@ namespace RSoft.Framework.Domain.Contracts
             // Regular expression for all characteres name (global)
             // ^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$
 
-            //BACKLOG: Globalization
             if (string.IsNullOrWhiteSpace(name.FirstName))
             {
                 Contract.IsNotNullOrEmpty(name.FirstName, "First name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_REQUIRED", "First name is required"));
@@ -44,21 +43,21 @@ namespace RSoft.Framework.Domain.Contracts
             else
             {
                 Contract
-                    .HasMinLen(name.FirstName ?? string.Empty, args.FirstNameMinimumLength, "First name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_MIN_SIZE", "First name must contain at least 2 characters"))
-                    .HasMaxLen(name.FirstName ?? string.Empty, args.FirstNameMaximumLength, "Last name", "First name must contain a maximum of 50 characters")
-                    .Matchs(name.FirstName, $"^[a-zA-Z{args.CharListAllowed} ,.'-]+$", "First name", "First name contains invalid characters");
+                    .HasMinLen(name.FirstName ?? string.Empty, args.FirstNameMinimumLength, "First name", string.Format(ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_MIN_SIZE", "First name must contain at least {0} characters"), args.FirstNameMinimumLength))
+                    .HasMaxLen(name.FirstName ?? string.Empty, args.FirstNameMaximumLength, "Last name", string.Format(ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_MAX_SIZE","First name must contain a maximum of {0} characters"), args.FirstNameMaximumLength))
+                    .Matchs(name.FirstName, $"^[a-zA-Z{args.CharListAllowed} ,.'-]+$", "First name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_INVALID_CHARS", "First name contains invalid characters"));
             }
 
             if (string.IsNullOrWhiteSpace(name.LastName))
             {
-                Contract.IsNotNullOrEmpty(name.LastName, "Last name", "Last name is required");
+                Contract.IsNotNullOrEmpty(name.LastName, "Last name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("LAST_NAME_REQUIRED", "Last name is required"));
             }
             else
             { 
                 Contract
-                    .HasMinLen(name.LastName ?? string.Empty, args.LastNameMinimumLength, "Last name", "Last name must contain at least 2 characters")
-                    .HasMaxLen(name.LastName ?? string.Empty, args.LastNameMaximumLength, "Last name", "Last name must contain a maximum of 50 characters")
-                    .Matchs(name.LastName, $"^[a-zA-Z{args.CharListAllowed} ,.'-]+$", "Last name", "Last name contains invalid characters");
+                    .HasMinLen(name.LastName ?? string.Empty, args.LastNameMinimumLength, "Last name", string.Format(ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("LAST_NAME_MIN_SIZE", "Last name must contain at least {0} characters"), args.LastNameMinimumLength))
+                    .HasMaxLen(name.LastName ?? string.Empty, args.LastNameMaximumLength, "Last name", string.Format(ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("LAST_NAME_MAX_SIZE", "Last name must contain a maximum of {0} characters"), args.LastNameMaximumLength))
+                    .Matchs(name.LastName, $"^[a-zA-Z{args.CharListAllowed} ,.'-]+$", "Last name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("LAST_NAME_INVALID_CHARS", "Last name contains invalid characters"));
 
             }
 
