@@ -1,4 +1,5 @@
-﻿using RSoft.Framework.Cross.Entities;
+﻿using RSoft.Framework.Cross.Abstractions;
+using RSoft.Framework.Cross.Entities;
 
 namespace RSoft.Framework.Domain.Contracts
 {
@@ -38,12 +39,12 @@ namespace RSoft.Framework.Domain.Contracts
             //BACKLOG: Globalization
             if (string.IsNullOrWhiteSpace(name.FirstName))
             {
-                Contract.IsNotNullOrEmpty(name.FirstName, "First name", "First name is required");
+                Contract.IsNotNullOrEmpty(name.FirstName, "First name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_REQUIRED", "First name is required"));
             }
             else
             {
                 Contract
-                    .HasMinLen(name.FirstName ?? string.Empty, args.FirstNameMinimumLength, "First name", "First name must contain at least 2 characters")
+                    .HasMinLen(name.FirstName ?? string.Empty, args.FirstNameMinimumLength, "First name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_MIN_SIZE", "First name must contain at least 2 characters"))
                     .HasMaxLen(name.FirstName ?? string.Empty, args.FirstNameMaximumLength, "Last name", "First name must contain a maximum of 50 characters")
                     .Matchs(name.FirstName, $"^[a-zA-Z{args.CharListAllowed} ,.'-]+$", "First name", "First name contains invalid characters");
             }
