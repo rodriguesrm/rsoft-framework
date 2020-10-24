@@ -66,6 +66,14 @@ namespace RSoft.Framework.Web.Api
         }
 
         /// <summary>
+        /// Accept-Language passed in the request header
+        /// </summary>
+        protected string AcceptLanguage
+        {
+            get => Request?.Headers["Accept-Language"];
+        }
+
+        /// <summary>
         /// Convert a dictionary into a GenericNotificationResponse list
         /// </summary>
         /// <param name="dictionary">Notifications dictionary(string, string)</param>

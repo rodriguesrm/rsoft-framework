@@ -1,4 +1,6 @@
-﻿namespace RSoft.Framework.Domain.Contracts
+﻿using RSoft.Framework.Cross.Abstractions;
+
+namespace RSoft.Framework.Domain.Contracts
 {
 
     /// <summary>
@@ -22,11 +24,10 @@
         /// <param name="required">Indicates whether email is required (default true)</param>
         public EmailValidationContract(string email, bool required) : base()
         {
-            //BACKLOG: Globalization
             if (required)
                 Contract.Requires();
             Contract
-                .IsEmailOrEmpty(email, "Email", "Invalid e-mail");
+                .IsEmailOrEmpty(email, "Email", ServiceActivator.GetStringInLocalizer<EmailValidationContract>("EMAIL_INVALID", "Invalid e-mail"));
         }
 
         #endregion

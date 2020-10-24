@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RSoft.Framework.Application.Dto;
+using RSoft.Framework.Cross.Abstractions;
+using RSoft.Framework.Resources;
 using RSoft.Framework.Web.Model.Response;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,7 +127,7 @@ namespace RSoft.Framework.Web.Api
         {
             TDto dto = await GetByIdAsync(key, cancellationToken);
             if (dto == null)
-                return NotFound("Data not found");
+                return NotFound(ServiceActivator.GetStringInLocalizer<SharedLanguageResource>("DATA_NOT_FOUND", "Data not found"));
             TResponse resp = Map(dto);
             return Ok(resp);
         }
@@ -152,7 +154,7 @@ namespace RSoft.Framework.Web.Api
 
             TDto dto = await GetByIdAsync(key, cancellationToken);
             if (dto == null)
-                return NotFound("Data not found");
+                return NotFound(ServiceActivator.GetStringInLocalizer<SharedLanguageResource>("DATA_NOT_FOUND", "Data not found"));
 
             dto = Map(request);
             dto.Id = key;
@@ -177,7 +179,7 @@ namespace RSoft.Framework.Web.Api
         {
             TDto dto = await GetByIdAsync(key, cancellationToken);
             if (dto == null)
-                return NotFound("Data not found");
+                return NotFound(ServiceActivator.GetStringInLocalizer<SharedLanguageResource>("DATA_NOT_FOUND", "Data not found"));
             await RemoveAsync(key, cancellationToken);
             return NoContent();
         }

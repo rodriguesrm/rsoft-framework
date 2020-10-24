@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSoft.Framework.Cross.Abstractions;
+using System;
 
 namespace RSoft.Framework.Domain.Contracts
 {
@@ -20,11 +21,10 @@ namespace RSoft.Framework.Domain.Contracts
         public PeriodDateValidationContract(DateTime? startDate, DateTime? endDate, string field) : base()
         {
 
-            //BACKLOG: Globalization
             Contract
-                .IsNotNull(startDate, field, $"[{field}] Invalid start date")
-                .IsNotNull(endDate, field, $"[{field}] Invalid end date")
-                .IsGreaterOrEqualsThan(endDate.Value, startDate.Value, field, $"[{field}] The end date must be greater than the start date")
+                .IsNotNull(startDate, field, ServiceActivator.GetStringInLocalizer<PeriodDateValidationContract>("START_DATE_INVALID", "[{0}] Invalid start date", field))
+                .IsNotNull(endDate, field, ServiceActivator.GetStringInLocalizer<PeriodDateValidationContract>("END_DATE_INVALID", "[{0}] Invalid end date", field))
+                .IsGreaterOrEqualsThan(endDate.Value, startDate.Value, field, ServiceActivator.GetStringInLocalizer<PeriodDateValidationContract>("DATES_INVALID", "[{0}] The end date must be greater than the start date", field))
             ;
 
         }

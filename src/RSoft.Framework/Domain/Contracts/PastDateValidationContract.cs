@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSoft.Framework.Cross.Abstractions;
+using System;
 
 namespace RSoft.Framework.Domain.Contracts
 {
@@ -21,10 +22,13 @@ namespace RSoft.Framework.Domain.Contracts
         public PastDateValidationContract(DateTime? date, string field, string message) : base()
         {
 
-            //BACKLOG: Globalization
             Contract
                 .IsNotNull(date, field, message)
-                .IsLowerOrEqualsThan((date == null ? DateTime.UtcNow : date.Value), DateTime.UtcNow, field, $"The '{field}' must be less than the current date")
+                .IsLowerOrEqualsThan(
+                    (date == null ? DateTime.UtcNow : date.Value), 
+                    DateTime.UtcNow, 
+                    field, 
+                    ServiceActivator.GetStringInLocalizer<PastDateValidationContract>("INVALID_DATE", "The '{0}' must be less than the current date", field))
             ;
 
         }

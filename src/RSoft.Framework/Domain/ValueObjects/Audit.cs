@@ -1,4 +1,6 @@
-﻿using RSoft.Framework.Domain.Entities;
+﻿using RSoft.Framework.Cross.Abstractions;
+using RSoft.Framework.Domain.Entities;
+using RSoft.Framework.Resources;
 using System;
 
 namespace RSoft.Framework.Domain.ValueObjects
@@ -54,9 +56,8 @@ namespace RSoft.Framework.Domain.ValueObjects
         ///<inheritdoc/>
         protected override void Validate()
         {
-            //BACKLOG: Globalization
             if (CreatedAuthor == null)
-                AddNotification(nameof(CreatedAuthor), $"{nameof(CreatedAuthor)} is required");
+                AddNotification(nameof(CreatedAuthor), ServiceActivator.GetStringInLocalizer<SharedLanguageResource>("CREATED_AUTHOR_REQUIRED", "{0} is required", nameof(CreatedAuthor)));
             if (CreatedAuthor != null) AddNotifications(CreatedAuthor.Notifications);
             if (ChangedAuthor != null) AddNotifications(ChangedAuthor.Notifications);
         }

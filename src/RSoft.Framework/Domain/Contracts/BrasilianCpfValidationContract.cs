@@ -1,4 +1,5 @@
-﻿using hlp = RSoft.Helpers.Validations.BrasilianDocument;
+﻿using RSoft.Framework.Cross.Abstractions;
+using hlp = RSoft.Helpers.Validations.BrasilianDocument;
 
 namespace RSoft.Framework.Domain.Contracts
 {
@@ -22,11 +23,11 @@ namespace RSoft.Framework.Domain.Contracts
 
             if (required)
                 if (string.IsNullOrWhiteSpace(cpf))
-                    Contract.AddNotification(fieldName, $"{fieldName} is required");
+                    Contract.AddNotification(fieldName, ServiceActivator.GetStringInLocalizer<BrasilianCpfValidationContract>("DOCUMENT_REQUIRED", "CPF is required"));
 
             if (!string.IsNullOrWhiteSpace(cpf))
                 Contract
-                    .IsTrue(hlp.CheckDocument(cpf), fieldName, $"{fieldName} invalid");
+                    .IsTrue(hlp.CheckDocument(cpf), fieldName, ServiceActivator.GetStringInLocalizer<BrasilianCpfValidationContract>("DOCUMENT_INVALID", "CPF invalid"));
         }
 
         #endregion

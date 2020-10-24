@@ -1,4 +1,6 @@
-﻿using RSoft.Framework.Domain.Contracts;
+﻿using RSoft.Framework.Cross.Abstractions;
+using RSoft.Framework.Domain.Contracts;
+using RSoft.Framework.Resources;
 
 namespace RSoft.Framework.Domain.ValueObjects
 {
@@ -45,8 +47,7 @@ namespace RSoft.Framework.Domain.ValueObjects
         ///<inheritdoc/>
         protected override void Validate()
         {
-            //BACKLOG: Globalization
-            AddNotifications(new RequiredValidationContract<TKey>(Id, nameof(Id), "Id is required").Contract.Notifications);
+            AddNotifications(new RequiredValidationContract<TKey>(Id, nameof(Id), ServiceActivator.GetStringInLocalizer<SharedLanguageResource>("ID_REQUIRED", "Id is required")).Contract.Notifications);
             AddNotifications(new SimpleStringValidationContract(Name, nameof(Name), true, 2, 150).Contract.Notifications);
         }
 

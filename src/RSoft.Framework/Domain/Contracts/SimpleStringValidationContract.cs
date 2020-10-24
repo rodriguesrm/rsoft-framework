@@ -1,4 +1,6 @@
-﻿namespace RSoft.Framework.Domain.Contracts
+﻿using RSoft.Framework.Cross.Abstractions;
+
+namespace RSoft.Framework.Domain.Contracts
 {
 
     /// <summary>
@@ -51,32 +53,31 @@
             if (expression != null)
                 expression = expression.Trim();
 
-            //BACKLOG: Globalization
             if (required)
                 Contract
                     .Requires()
-                    .IsNotNullOrEmpty(expression, fieldName, $"The {fieldName} field is required");
+                    .IsNotNullOrEmpty(expression, fieldName, ServiceActivator.GetStringInLocalizer<SimpleStringValidationContract>("FIELD_REQUIRED", "The {0} field is required", fieldName));
 
             if (expression != null)
             {
 
                 if (!string.IsNullOrWhiteSpace(pattern))
-                    Contract.Matchs(expression, pattern, fieldName, $"{fieldName} is invalid");
+                    Contract.Matchs(expression, pattern, fieldName, ServiceActivator.GetStringInLocalizer<SimpleStringValidationContract>("FIELD_INVALID", "{0} is invalid", fieldName));
 
                 if ((minLen ?? 0) > 0 && (maxLen ?? 0) > 0 && minLen.Value == maxLen.Value)
                 {
-                    Contract.HasLen(expression, minLen.Value, fieldName, $"The {fieldName} must have {minLen.Value} character(es)");
+                    Contract.HasLen(expression, minLen.Value, fieldName, ServiceActivator.GetStringInLocalizer<SimpleStringValidationContract>("FIELD_MIN_SIZE", "The {0} must have {1} character(s)", fieldName, minLen.Value));
                 }
                 else
                 {
 
                     if (minLen.HasValue && minLen.Value > 0)
                         Contract
-                            .HasMinLen(expression, minLen.Value, fieldName, $"The {fieldName} field must contain at least {minLen.Value} character(s)");
+                            .HasMinLen(expression, minLen.Value, fieldName, ServiceActivator.GetStringInLocalizer<SimpleStringValidationContract>("FIELD_MIN_SIZE", "The {0} field must contain at least {1} character(s)", fieldName, minLen.Value));
 
                     if (maxLen.HasValue && maxLen.Value > 0 && maxLen.Value >= (minLen ?? 0))
                         Contract
-                            .HasMaxLen(expression, maxLen.Value, fieldName, $"The {fieldName} fields must contain a maximum {maxLen.Value} character(s)");
+                            .HasMaxLen(expression, maxLen.Value, fieldName, ServiceActivator.GetStringInLocalizer<SimpleStringValidationContract>("FIELD_MAX_SIZE", "The {0} fields must contain a maximum {1} character(s)", fieldName, maxLen.Value));
 
                 }
 

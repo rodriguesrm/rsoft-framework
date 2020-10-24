@@ -43,8 +43,8 @@ namespace RSoft.Framework.Domain.Contracts
             else
             {
                 Contract
-                    .HasMinLen(name.FirstName ?? string.Empty, args.FirstNameMinimumLength, "First name", string.Format(ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_MIN_SIZE", "First name must contain at least {0} characters"), args.FirstNameMinimumLength))
-                    .HasMaxLen(name.FirstName ?? string.Empty, args.FirstNameMaximumLength, "Last name", string.Format(ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_MAX_SIZE","First name must contain a maximum of {0} characters"), args.FirstNameMaximumLength))
+                    .HasMinLen(name.FirstName ?? string.Empty, args.FirstNameMinimumLength, "First name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_MIN_SIZE", "First name must contain at least {0} characters", args.FirstNameMinimumLength))
+                    .HasMaxLen(name.FirstName ?? string.Empty, args.FirstNameMaximumLength, "Last name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_MAX_SIZE","First name must contain a maximum of {0} characters", args.FirstNameMaximumLength))
                     .Matchs(name.FirstName, $"^[a-zA-Z{args.CharListAllowed} ,.'-]+$", "First name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("FIRST_NAME_INVALID_CHARS", "First name contains invalid characters"));
             }
 
@@ -55,8 +55,8 @@ namespace RSoft.Framework.Domain.Contracts
             else
             { 
                 Contract
-                    .HasMinLen(name.LastName ?? string.Empty, args.LastNameMinimumLength, "Last name", string.Format(ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("LAST_NAME_MIN_SIZE", "Last name must contain at least {0} characters"), args.LastNameMinimumLength))
-                    .HasMaxLen(name.LastName ?? string.Empty, args.LastNameMaximumLength, "Last name", string.Format(ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("LAST_NAME_MAX_SIZE", "Last name must contain a maximum of {0} characters"), args.LastNameMaximumLength))
+                    .HasMinLen(name.LastName ?? string.Empty, args.LastNameMinimumLength, "Last name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("LAST_NAME_MIN_SIZE", "Last name must contain at least {0} characters", args.LastNameMinimumLength))
+                    .HasMaxLen(name.LastName ?? string.Empty, args.LastNameMaximumLength, "Last name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("LAST_NAME_MAX_SIZE", "Last name must contain a maximum of {0} characters", args.LastNameMaximumLength))
                     .Matchs(name.LastName, $"^[a-zA-Z{args.CharListAllowed} ,.'-]+$", "Last name", ServiceActivator.GetStringInLocalizer<FullNameValidationContract>("LAST_NAME_INVALID_CHARS", "Last name contains invalid characters"));
 
             }
