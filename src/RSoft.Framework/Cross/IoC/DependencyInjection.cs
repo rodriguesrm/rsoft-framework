@@ -60,7 +60,7 @@ namespace RSoft.Framework.Cross.IoC
 
             services.AddDbContext<TDbContext>(opt =>
             {
-                opt.UseMySql(configuration.GetConnectionString(connectionStringName));
+                opt.UseMySql(configuration.GetConnectionString(connectionStringName), ServerVersion.AutoDetect(configuration.GetConnectionString(connectionStringName)));
                 if (useLayzLoadingProxy)
                     opt.UseLazyLoadingProxies();
             });
