@@ -8,10 +8,13 @@ Package that brings together the abstractions and common codes for the applicati
 - Create extensions to Services Language/Culture/StringLocalizer
 
 ### Release Notes version 1.0.0-rc1.7
-- Fix configure method to configure Services Language/Culture/StringLocalizer
+- Fixed configure method to configure Services Language/Culture/StringLocalizer
 
 ### Release Notes version 1.0.0-rc1.8
 - Added StringLocalizer to show messages in supported languages
 
 ### Release Notes version 1.0.0-rc1.9
 - Upgrade packages dependencies to released versions 5.0.0
+
+### Release Notes version 1.0.0-rc1.10
+- Fixed error when execute RunListAsync method on ApiCrudBaseController and return is a null list

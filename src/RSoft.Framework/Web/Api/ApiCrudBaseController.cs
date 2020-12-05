@@ -139,6 +139,8 @@ namespace RSoft.Framework.Web.Api
         protected async Task<IActionResult> RunListAsync(CancellationToken cancellationToken = default)
         {
             IEnumerable<TDto> result = await GetAllAsync(cancellationToken);
+            if (result == null)
+                return NoContent();
             IEnumerable<TResponse> resp = Map(result);
             return Ok(resp);
         }
