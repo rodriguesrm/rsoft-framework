@@ -18,3 +18,6 @@ Package that brings together the abstractions and common codes for the applicati
 
 ### Release Notes version 1.0.0-rc1.10
 - Fixed error when execute RunListAsync method on ApiCrudBaseController and return is a null list
+
+### Release Notes version 1.0.0-rc1.11
+- Update packages for enable Seq Logs
