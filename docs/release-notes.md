@@ -21,3 +21,6 @@ Package that brings together the abstractions and common codes for the applicati
 
 ### Release Notes version 1.0.0-rc1.11
 - Update packages for enable Seq Logs
+
+### Release Notes version 1.0.0-rc1.12
+- Update RSoft.Logs packages for bug fixes
